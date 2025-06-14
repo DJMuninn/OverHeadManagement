@@ -9,6 +9,7 @@ import axios from 'axios'
 axios.get('http://localhost:8080/api/health').then(res => console.log(res.data)).catch(err => console.error(err));
 
 const palletData = {
+  ID: 3,
   aisle: 1,
   bay: 2,
   side: "left",
@@ -19,6 +20,7 @@ const palletData = {
   ]
 };
 
+
 axios.post('http://localhost:8080/api/action', {
   action: 1,
   data: palletData
@@ -27,6 +29,37 @@ axios.post('http://localhost:8080/api/action', {
     'Content-Type': 'application/json'
   }
 }).then(res => console.log(res.data)).catch(err => console.error(err));
+
+/*axios.post('http://localhost:8080/api/action', {
+  action: 2,
+  data: palletData
+}, {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+}).then(res => console.log(res.data)).catch(err => console.error(err));*/
+
+const palletUpdate = {
+  id: 1,  // existing id to update
+  aisle: 3,
+  bay: 2,
+  side: "right",
+  sku_list: [
+    { sku: 999, qty: 10 },
+    { sku: 888, qty: 5 }
+  ]
+};
+
+axios.post('http://localhost:8080/api/action', {
+  action: 3,
+  data: palletUpdate
+}, {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+.then(res => console.log(res.data))
+.catch(err => console.error(err));
 
 const bay1="bay1";
 const size=24;
