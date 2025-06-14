@@ -1,4 +1,4 @@
-module github.com/DJMuninn/OverHeadManagement/
+module github.com/DJMuninn/OverHeadManagement
 
 go 1.24.4
 

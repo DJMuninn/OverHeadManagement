@@ -8,7 +8,7 @@ import (
     "net/http"
 
     _ "github.com/go-sql-driver/mysql"
-   "https://github.com/DJMuninn/OverHeadManagement/"
+   "github.com/DJMuninn/OverHeadManagement"
 )
 
 // ✅ Corrected CORS middleware
