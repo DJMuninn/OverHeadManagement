@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	"github.com/DJMuninn/OverHeadManagement/OverHead"
+	"github.com/DJMuninn/OverHeadManagement/headers"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -25,7 +26,10 @@ func main() {
 		log.Fatal(err)
 	}
 	defer db.Close()
-
+	err = headers.initializeTables(db)
+	if err != nil {
+		log.Fatal("Failed to initialize tables:", err)
+	}
 	// Health check
 	http.HandleFunc("/api/health", func(w http.ResponseWriter, r *http.Request) {
 		enableCORS(w, r)
@@ -51,7 +55,7 @@ func main() {
 			return
 		}
 
-		var req OverHead.APIRequest
+		var req headers.APIRequest
 		err := json.NewDecoder(r.Body).Decode(&req)
 		if err != nil {
 			fmt.Println("Error decoding JSON:", err)
