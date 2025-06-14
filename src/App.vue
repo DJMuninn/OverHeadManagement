@@ -4,6 +4,29 @@ import Message from './components/Message.vue'
 import Counter from './components/Counter.vue'
 import Toggle from './components/Toggle.vue'
 import Bay from './components/Bay.vue'
+import axios from 'axios'
+
+axios.get('http://localhost:8080/api/health').then(res => console.log(res.data)).catch(err => console.error(err));
+
+const palletData = {
+  aisle: 1,
+  bay: 2,
+  side: "left",
+  sku_list: [
+    { sku: 123, qty: 5 },
+    { sku: 456, qty: 2 },
+    { sku: 789, qty: 12 }
+  ]
+};
+
+axios.post('http://localhost:8080/api/action', {
+  action: 1,
+  data: palletData
+}, {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+}).then(res => console.log(res.data)).catch(err => console.error(err));
 
 const bay1="bay1";
 const size=24;
